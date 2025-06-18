@@ -1,16 +1,42 @@
-# flutter_internship_task
+# AUVNET Flutter Internship Assessment
 
-A new Flutter project.
+A Flutter-based e-commerce application demonstrating authentication, product listing, cart management, and persistent user preferences.
 
-## Getting Started
+## Project Setup & Installation
 
-This project is a starting point for a Flutter application.
+1. **Clone the Repository**
+   ```sh
+   git clone https://github.com/Ahmed-0-Ibrahim/AUVNET-Flutter-Internship-Assessment.git
+   cd AUVNET-Flutter-Internship-Assessment
+   ```
 
-A few resources to get you started if this is your first Flutter project:
+2. **Install Dependencies**
+   ```sh
+   flutter pub get
+   ```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+3. **Firebase Setup**
+   - Ensure you have a Firebase project.
+   - Download `google-services.json` (Android) and/or `GoogleService-Info.plist` (iOS) and place them in the respective platform folders.
+   - Update Firebase configuration in the project if needed.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+4. **Run the App**
+   ```sh
+   flutter run
+   ```
+
+## Architectural Overview
+
+This project uses a **feature-first** structure and the **BLoC (Business Logic Component)** pattern for state management.
+
+- **lib/features/**: Each feature (auth, home, cart, product) contains its own presentation, domain, and data layers.
+- **State Management**: Uses `flutter_bloc` for scalable and testable state management.
+- **Persistence**: Uses `hive_flutter` for local storage of user preferences (e.g., grid/list view).
+- **Firebase**: Handles authentication and backend services.
+- **UI**: Responsive layouts with support for both grid and list product views, and a persistent cart.
+
+**Rationale**:  
+- **BLoC** separates UI from business logic, making the codebase maintainable and testable.
+- **Feature-first** organization scales well as the app grows.
+- **Hive** is lightweight and fast for local key-value storage.
+- **Firebase** provides robust authentication and backend integration.
