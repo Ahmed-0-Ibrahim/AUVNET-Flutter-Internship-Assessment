@@ -1,0 +1,31 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'core/theme/app_theme.dart';
+import 'presentation/blocs/product_bloc.dart';
+import 'presentation/screens/home_screen.dart';
+import 'data/datasources/local/hive_service.dart';
+import 'data/datasources/remote/firebase_service.dart';
+import 'data/repositories/product_repository.dart';
+import 'domain/usecases/get_products.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await HiveService.init();
+  await FirebaseService.initialize();
+
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'E-commerce App',
+      theme: AppTheme.lightTheme,
+      home: BlocProvider(
+        create: (context) => ProductBloc(GetProducts(ProductRepository())),
+        child: HomeScreen(),
+      ),
+    );
+  }
+}

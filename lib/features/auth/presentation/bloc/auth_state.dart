@@ -1,0 +1,25 @@
+import 'package:flutter_internship_task/features/auth/data/models/user_model.dart';
+
+abstract class AuthState {}
+
+class AuthInitial extends AuthState {}
+
+class AuthLoading extends AuthState {}
+
+class AuthSuccess extends AuthState {
+  final UserModel user;
+
+  AuthSuccess(this.user);
+}
+
+class AuthPasswordVisibility extends AuthState {
+  final bool isPasswordVisible;
+
+  AuthPasswordVisibility(this.isPasswordVisible);
+}
+
+class AuthFailure extends AuthState {
+  final String message;
+
+  AuthFailure(this.message);
+}
